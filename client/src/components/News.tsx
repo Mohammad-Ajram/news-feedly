@@ -16,7 +16,7 @@ const News: React.FC = () => {
     pageSize: 10,
     total: 0,
   });
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const resetPagination = () => {
     setPaginationDetails({
       pageNo: 1,
@@ -44,7 +44,10 @@ const News: React.FC = () => {
           setLoading(false);
           window.scrollTo({ top: 0, behavior: "smooth" });
         })
-        .catch((err: any) => console.log(err));
+        .catch((err: any) => {
+          setLoading(false);
+          console.log(err);
+        });
     },
     [sources, searchText]
   );
